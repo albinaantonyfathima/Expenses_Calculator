@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Personal Expense Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            width: 400px;
+            margin: 30px auto;
+            padding: 25px;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        h3 {
+            color: #555;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 95%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkgreen;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #eeeeee;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Personal Expense Calculator</h1>
+
+        <label>Enter Your Income:</label>
+        <input type="number" id="income" placeholder="Enter income">
+
+        <h3>Enter Expenses</h3>
+
+        <label>Food:</label>
+        <input type="number" id="food" placeholder="Food expense">
+
+        <label>Travel:</label>
+        <input type="number" id="travel" placeholder="Travel expense">
+
+        <label>Education:</label>
+        <input type="number" id="education" placeholder="Education expense">
+
+        <label>Shopping:</label>
+        <input type="number" id="shopping" placeholder="Shopping expense">
+
+        <label>Entertainment:</label>
+        <input type="number" id="entertainment" placeholder="Entertainment expense">
+
+        <button onclick="calculateExpense()">Calculate</button>
+
+        <div id="result">
+            <h3>Summary Report</h3>
+            <p id="total"></p>
+            <p id="saving"></p>
+        </div>
+
+    </div>
+
+    <script>
+        function calculateExpense() {
+
+            // Get income
+            let income = Number(document.getElementById("income").value);
+
+            // Get expenses
+            let food = Number(document.getElementById("food").value);
+            let travel = Number(document.getElementById("travel").value);
+            let education = Number(document.getElementById("education").value);
+            let shopping = Number(document.getElementById("shopping").value);
+            let entertainment = Number(document.getElementById("entertainment").value);
+
+            // Calculate total expenses
+            let totalExpense = food + travel + education + shopping + entertainment;
+
+            // Calculate savings
+            let savings = income - totalExpense;
+
+            // Display result
+            document.getElementById("total").innerHTML =
+                "Total Expenses: Rs." + totalExpense;
+
+            document.getElementById("saving").innerHTML =
+                "Your Savings: Rs." + savings;
+
+            // Check savings
+            if (savings > 0) {
+                document.getElementById("saving").style.color = "green";
+            }
+            else if (savings == 0) {
+                document.getElementById("saving").style.color = "orange";
+            }
+            else {
+                document.getElementById("saving").style.color = "red";
+            }
+        }
+    </script>
+
+</body>
+</html>
